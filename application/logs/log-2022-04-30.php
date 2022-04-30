@@ -109,3 +109,5 @@ ERROR - 2022-04-30 14:36:21 --> 404 Page Not Found: kitchen/Assets/images
 ERROR - 2022-04-30 18:01:06 --> Severity: Compile Error --> Array and string offset access syntax with curly braces is no longer supported C:\xampp\htdocs\nohung\application\third_party\google-api-client\service\Google_Utils.php 58
 ERROR - 2022-04-30 18:06:26 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: YES) C:\xampp\htdocs\nohung\system\database\drivers\mysqli\mysqli_driver.php 203
 ERROR - 2022-04-30 18:06:26 --> Unable to connect to the database
+ERROR - 2022-04-30 18:18:16 --> 404 Page Not Found: Assets/uploaded
+ERROR - 2022-04-30 18:18:56 --> 404 Page Not Found: Assets/css
