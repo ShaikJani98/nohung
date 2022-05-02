@@ -21,6 +21,6 @@
     <?php } ?>
 <?php }else{ ?>
     <div class="myaccount-addresslist-content">
-        <p class="trxt-center">No any address available.</p>
+        <p class="trxt-center">No address available.</p>
     </div>
 <?php } ?>

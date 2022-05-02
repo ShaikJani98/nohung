@@ -208,7 +208,7 @@
                                 <?php } ?>
                             <?php } else { ?>
                                 <tr>
-                                    <td colspan="3" class="text-center">No any orders available.</td>
+                                    <td colspan="3" class="text-center">No orders available.</td>
                                 </tr>
                             <?php } ?>
                         </tbody>

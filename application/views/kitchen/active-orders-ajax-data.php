@@ -74,7 +74,7 @@
 }else{ ?>
     <div class="col-lg-12 col-md-12">
         <div class="contentOrderManagement">
-            <p style="color:#7e7f7f;">No any active orders available.</p>
+            <p style="color:#7e7f7f;">No active orders available.</p>
         </div>
     </div> 
 <?php } ?>

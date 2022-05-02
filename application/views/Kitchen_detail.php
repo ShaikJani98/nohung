@@ -509,6 +509,8 @@ function myFunction() {
                     </div>
                     <div class="time-section">
                         <p class="heading">At what time you want delivery?</p>
+                            <input type="hidden" name="pre_ord_packageid" id="pre_ord_packageid">
+                            <input type="hidden" name="kitchenid" id="kitchenid" value="<?= $kitchendata['id'] ?>">
                         <div class="choose-time">
                             <input type="radio" name="delivery-time" id="fulleleven" value="11:00-11:30"><label for="fulleleven">11:00-11:30</label>
                             <input type="radio" name="delivery-time" id="halfeleven" value="11:30-12:00"><label for="halfeleven">11:30-12:00</label>
@@ -1295,7 +1297,7 @@ function checkout2(){
             <?php }else{ ?>
               <div class="checkout-cart-section-container">
                 <div style="background-color: white;padding: 20px;width: 100%;margin-left:680px;">
-                  No any items available in cart. 
+                  No items are available in cart. 
                 </div>
               </div>
             <?php } ?>

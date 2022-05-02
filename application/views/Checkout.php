@@ -466,7 +466,7 @@
             <?php }else{ ?>
               <div class="checkout-cart-section-container">
                 <div style="background-color: white;padding: 130px;width: 100%;">
-                  No any items available in cart. 
+                  No items are available in cart. 
                 </div>
               </div>
             <?php } ?>

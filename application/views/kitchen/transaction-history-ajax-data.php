@@ -75,7 +75,7 @@
 <?php } else { ?>
     <div class="col-lg-12 col-md-12">
         <div class="contentOrderManagement" style="border-radius: 8px !important;font-size: 15px;padding: 20px;">
-            <?php echo "No any transaction available." ?>
+            <?php echo "No transaction available." ?>
         </div>
     </div>
 <?php } ?>

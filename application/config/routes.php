@@ -68,6 +68,7 @@ $route['kitchen-detail/get-reviews'] = "Kitchen_detail/get_reviews/$1";
 $route['kitchen-detail/add-review'] = "Kitchen_detail/add_review/$1";
 $route['kitchen-detail/get-package-detail'] = "Kitchen_detail/get_package_detail/$1";
 $route['kitchen-detail/addtocart'] = "Kitchen_detail/addtocart/$1";
+$route['kitchen-detail/cardItemCheck'] = "Kitchen_detail/cardItemCheck/$1";
 $route['kitchen-detail/addtocart-package'] = "Kitchen_detail/addtocart_package/$1";
 $route['kitchen-detail/editcart'] = "Kitchen_detail/editcart/$1";
 $route['kitchen-detail/remove-cart-items'] = "Kitchen_detail/remove_cart_items/$1";

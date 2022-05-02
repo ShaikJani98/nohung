@@ -480,7 +480,7 @@ function get_reviews(userid){
                                 </div>';
                     }
                 }else{
-                    html += '<p style="color: #4a4a4a;font-size: 20px;">No any reviews available.</p>';
+                    html += '<p style="color: #4a4a4a;font-size: 20px;">No reviews available.</p>';
                 }
                 if(parseInt(rat_offset)==0){
                     $("#reviewlist").html(html);
@@ -599,6 +599,7 @@ function get_package_detail(packageid,plantype){
                     $("#packageconfirm .modal-title").html(package.packagename);
                     $("#select-package-modal .modal-title").html(package.packagename);
                     $("#ord_packageid").val(package.id);
+                    $("#pre_ord_packageid").val(package.id);
                     
                     $("#ord_mealplan").val(plantype);
 
@@ -973,9 +974,103 @@ function check_date(){
 
     if(isvalid){
         var time = $("input[name=delivery-time]:checked").val().split("-");
-        
-        $("#packageconfirm").modal("show");
-        $(".settime").html($("input[name=delivery-time]:checked").val());
+        var kitchenid = $("input[name=kitchenid]").val();
+        var ord_packageid = $("input[name=pre_ord_packageid]").val();
+        $.ajax({
+            url: SITE_URL+'kitchen-detail/cardItemCheck',
+            type: 'POST',
+            data: {kitchenId:kitchenid,ordPackageid:ord_packageid},
+            dataType: 'json',
+            // async: false,
+            success: function(response){
+                if(response.type == 1){
+                }else if(response.type == 2){
+                  
+                    swal({
+                        title: "Items already in cart",
+                        text: "Your cart contains items from other kitchen. Would you like to reset your cart for adding items from this kitchen?",
+                        type: "warning",
+                        showCancelButton: true,   
+                        confirmButtonColor: "#FFA451",   
+                        cancelButtonText: "No",   
+                        confirmButtonText: "Yes, Start a Fresh",   
+                        closeOnConfirm: false }, 
+                        function(isConfirm){   
+                        if (isConfirm) {   
+                            $.ajax({
+                                url: SITE_URL + "kitchen-detail/remove-cart-items",
+                                // dataType: "json",
+                                type: "POST",
+                                success: function (data) {
+                                    if(data==1){
+                                        swal.close();
+                                        addtocart_package(packageid);
+                                    }
+                                }
+                            });
+                        }
+                    });
+                
+                }else if(response.type == 3){
+                
+                    swal({
+                        title: "Already added trial meal in cart",
+                        text: "Your cart contains items from trial meal. Would you like to reset your cart for adding packages in cart?",
+                        type: "warning",
+                        showCancelButton: true,   
+                        confirmButtonColor: "#FFA451",   
+                        cancelButtonText: "No",   
+                        confirmButtonText: "Yes, Start a Fresh",   
+                        closeOnConfirm: false }, 
+                        function(isConfirm){   
+                        if (isConfirm) {   
+                            $.ajax({
+                                url: SITE_URL + "kitchen-detail/remove-cart-items",
+                                // dataType: "json",
+                                type: "POST",
+                                success: function (data) {
+                                    if(data==1){
+                                        swal.close();
+                                        addtocart_package(packageid);
+                                    }
+                                }
+                            });
+                        }
+                    });
+                }else if(response.type == 4){
+                  
+                    var meal = "Breakfast";
+                    if(response.mealfor == 1){
+                        meal = "Lunch";
+                    }else if(response.mealfor == 2){
+                        meal = "Dinner";
+                    }
+                    swal({
+                        title: "Items already in cart",
+                        text: "Your cart contains already package is added for "+meal+". Would you like to reset your cart for adding package from other meal ?",
+                        type: "warning",
+                        showCancelButton: true,   
+                        confirmButtonColor: "#FFA451",   
+                        cancelButtonText: "No",   
+                        confirmButtonText: "Yes, Start a Fresh",   
+                        closeOnConfirm: false }, 
+                        function(isConfirm){   
+                        if (isConfirm) {   
+                            $.ajax({
+                                url: SITE_URL + "kitchen-detail/remove-cart-items",
+                                // dataType: "json",
+                                type: "POST",
+                                success: function (data) {
+                                    if(data==1){
+                                        swal.close();
+                                        addtocart_package(packageid);
+                                    }
+                                }
+                            });
+                        }
+                    });           
+                }
+                $(".settime").html($("input[name=delivery-time]:checked").val());
 
         var orderweeklyprice = $("#orderweeklyprice").html();
         $("#confirmorderweeklyprice").html(parseFloat(orderweeklyprice).toFixed(2));
@@ -986,10 +1081,115 @@ function check_date(){
 
         $("#ord_delivery_fromtime").val(time[0]);
         $("#ord_delivery_totime").val(time[1]);
+        if(response.type == 1){
+        $("#packageconfirm").modal("show");
+        }
+            }
+        });
         
     }else{
         $("#datetimeerror").html("<div class='alert alert-danger'>Please select date & time !</div>");
     }
+}
+function check_cart_item_exists(kitchenid)
+{
+    $.ajax({
+        url: SITE_URL+'kitchen-detail/cardItemCheck',
+        type: 'POST',
+        data: {kitchenId:kitchenid},
+        dataType: 'json',
+        // async: false,
+        success: function(response){
+            if(response.type == 1){
+            }else if(response.type == 2){
+              
+                swal({
+                    title: "Items already in cart",
+                    text: "Your cart contains items from other kitchen. Would you like to reset your cart for adding items from this kitchen?",
+                    type: "warning",
+                    showCancelButton: true,   
+                    confirmButtonColor: "#FFA451",   
+                    cancelButtonText: "No",   
+                    // confirmButtonText: "Yes, Start a Fresh",   
+                    closeOnConfirm: false }, 
+                    function(isConfirm){   
+                    if (isConfirm) {   
+                        $.ajax({
+                            url: SITE_URL + "kitchen-detail/remove-cart-items",
+                            // dataType: "json",
+                            type: "POST",
+                            success: function (data) {
+                                if(data==1){
+                                    swal.close();
+                                    addtocart_package(packageid);
+                                }
+                            }
+                        });
+                    }
+                });
+            
+            }else if(response.type == 3){
+            
+                swal({
+                    title: "Already added trial meal in cart",
+                    text: "Your cart contains items from trial meal. Would you like to reset your cart for adding packages in cart?",
+                    type: "warning",
+                    showCancelButton: true,   
+                    confirmButtonColor: "#FFA451",   
+                    cancelButtonText: "No",   
+                    confirmButtonText: "Yes, Start a Fresh",   
+                    closeOnConfirm: false }, 
+                    function(isConfirm){   
+                    if (isConfirm) {   
+                        $.ajax({
+                            url: SITE_URL + "kitchen-detail/remove-cart-items",
+                            // dataType: "json",
+                            type: "POST",
+                            success: function (data) {
+                                if(data==1){
+                                    swal.close();
+                                    addtocart_package(packageid);
+                                }
+                            }
+                        });
+                    }
+                });
+            }else if(response.type == 4){
+              
+                var meal = "Breakfast";
+                if(response.mealfor == 1){
+                    meal = "Lunch";
+                }else if(response.mealfor == 2){
+                    meal = "Dinner";
+                }
+                swal({
+                    title: "Items already in cart",
+                    text: "Your cart contains already package is added for "+meal+". Would you like to reset your cart for adding package from other meal ?",
+                    type: "warning",
+                    showCancelButton: true,   
+                    confirmButtonColor: "#FFA451",   
+                    cancelButtonText: "No",   
+                    confirmButtonText: "Yes, Start a Fresh",   
+                    closeOnConfirm: false }, 
+                    function(isConfirm){   
+                    if (isConfirm) {   
+                        $.ajax({
+                            url: SITE_URL + "kitchen-detail/remove-cart-items",
+                            // dataType: "json",
+                            type: "POST",
+                            success: function (data) {
+                                if(data==1){
+                                    swal.close();
+                                    addtocart_package(packageid);
+                                }
+                            }
+                        });
+                    }
+                });           
+            }
+            return response.type;
+        }
+    });
 }
 function open_date_select_modal(){
     $("#datetimeerror").html("");

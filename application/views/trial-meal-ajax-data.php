@@ -69,7 +69,7 @@
 <?php }else{ ?>
     <div class="col-lg-12 col-md-12">
         <div class="listOfFoodSection" style="border-radius: 8px !important;font-size: 15px;padding: 0px;text-align:center;">
-            <?php echo "No any item available." ?>
+            <?php echo "No item available." ?>
         </div>
     </div>
 <?php } ?>

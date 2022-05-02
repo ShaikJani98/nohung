@@ -68,7 +68,7 @@ if($_POST['token'] == API_TOKEN)
         }
         else
         {
-            APIError("No any account available for withdrawal.");
+            APIError("No account available for withdrawal.");
         }        
     }
     else

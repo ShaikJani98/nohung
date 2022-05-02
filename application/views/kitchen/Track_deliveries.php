@@ -83,7 +83,7 @@
             <?php }else{ ?>
                 <div class="col-lg-12">
                     <div class="listOfUserDevlieries">
-                        No any active deliveries available.
+                        No active deliveries available.
                     </div>        
                 </div>
             <?php } ?>

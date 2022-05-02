@@ -303,7 +303,7 @@
                                                         <?php } ?>
                                                     <?php } else { ?>
                                                         <div class="order-active-content">
-                                                            <p class="text-center">No any favorite order available.</p>
+                                                            <p class="text-center">No favorite order available.</p>
                                                         </div>
                                                     <?php } ?>
                                                 </div>
@@ -345,7 +345,7 @@
                                                         <?php } ?>
                                                     <?php } else { ?>
                                                         <div class="order-active-content">
-                                                            <p class="text-center">No any favorite kitchen available.</p>
+                                                            <p class="text-center">No favorite kitchen available.</p>
                                                         </div>
                                                     <?php } ?>
                                                 </div>

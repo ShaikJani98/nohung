@@ -19,6 +19,6 @@
     <?php } ?>
 <?php }else{ ?>
     <div class="order-active-content">
-        <p class="text-center">No any active order available.</p>
+        <p class="text-center">No active order's available.</p>
     </div>
 <?php } ?>
